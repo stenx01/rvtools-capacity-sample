@@ -1,0 +1,148 @@
+{
+  "kpis": {
+    "as_of": "2026-10-23",
+    "vcenters": [
+      "vc-lab01"
+    ],
+    "environments": [
+      "Sample"
+    ],
+    "powered_on_vms": 53,
+    "total_vms": 54,
+    "templates": 2,
+    "hosts": 6,
+    "hosts_maintenance": 1,
+    "clusters": 2,
+    "memory_used_gib": 1430.8,
+    "memory_total_gib": 4608.0,
+    "memory_used_pct": 31.0,
+    "cpu_weighted_pct": 15.2,
+    "cpu_avg_pct": 15.2,
+    "balloon_gib": 0.0,
+    "swapped_gib": 0.0,
+    "datastore_capacity_tib": 30.0,
+    "datastore_used_tib": 19.16,
+    "datastore_free_pct": 36.1,
+    "hosts_mem_warn": 2,
+    "hosts_mem_crit": 0,
+    "hosts_cpu_warn": 0,
+    "datastores_warn": 1,
+    "datastores_crit": 0,
+    "snapshot_vms": 9,
+    "snapshot_rows": 9,
+    "history_points": 8
+  },
+  "status": "AMBER",
+  "status_reasons": [
+    "1 datastore(s) below 20% free"
+  ],
+  "executive_summary": [
+    "Overall status AMBER as of 2026-10-23 across 1 vCenter(s): vc-lab01.",
+    "1 datastore(s) below 20% free",
+    "53 powered-on VMs (54 excluding templates) on 6 hosts (1 in maintenance).",
+    "Memory 1431 / 4608 GiB (31.0%). CPU 15.2% weighted by cores (simple average 15.2%).",
+    "Shared datastore 19.2 / 30.0 TiB used (36.1% free).",
+    "Trend uses 8 weekly snapshots; linear forecast is 12 weeks ahead."
+  ],
+  "section_notes": {
+    "hosts": [
+      "2 host(s) at or above 45% RAM: esx-e2.lab.example, esx-e3.lab.example.",
+      "No host above the 45% CPU watch line.",
+      "1 host(s) in maintenance \u2014 exclude them from spare-capacity claims.",
+      "No balloon or swap in vMemory \u2014 hosts are not in RAM distress even if some sit above 45%.",
+      "1 host(s) at \u2265 4.0 vCPU/core. That is consolidation, not necessarily CPU saturation."
+    ],
+    "memory": [
+      "Installed memory is 4608 GiB with 31.0% utilized (capacity-weighted from host counters).",
+      "Used RAM changed +15 GiB versus 2026-10-16 (1416 \u2192 1431).",
+      "Linear forecast of used RAM in 12 weeks: 1606 GiB. Treat as a trend, not a booking."
+    ],
+    "cpu": [
+      "Capacity-weighted CPU is 15.2% (better than averaging host % columns, which is 15.2% here).",
+      "Linear forecast of weighted CPU in 12 weeks: 17.3%."
+    ],
+    "datastore": [
+      "Tightest shared datastore is DS-EAST-01 at 17% free (1.4 TiB of 8.0 TiB).",
+      "1 datastore(s) below 20% free \u2014 plan growth or cleanup.",
+      "1 datastore(s) are thin-overprovisioned (provisioned > capacity). Watch in-use, not provisioned."
+    ],
+    "guest_fs": [
+      "Tiny volumes (/boot, < 1 GiB) are excluded so the list is not dominated by small system mounts.",
+      "2 guest filesystem(s) \u2264 10% free. Worst: app-db-01 /var (7%), app-web-04 /var (8%).",
+      "3 guest filesystem(s) \u2264 20% free including the critical set."
+    ],
+    "vms": [
+      "53 powered-on VMs this snapshot (2 templates excluded from the count).",
+      "Powered-on count +1 versus 2026-10-16."
+    ],
+    "hygiene": [
+      "9 VM(s) still have snapshots (9 snapshot files). Age them out unless they are active change windows.",
+      "2 VM(s) with Tools not running or not installed."
+    ]
+  },
+  "exceptions": {
+    "hosts_mem": [
+      {
+        "Host": "esx-e2.lab.example",
+        "Cluster": "cluster-east",
+        "vCenter": "vc-lab01",
+        "Maintenance": "",
+        "CPU %": 25.8,
+        "Memory %": 51.8,
+        "Memory GiB": 768.0,
+        "Cores": 32,
+        "vCPUs": 136,
+        "vCPU/core": 4.25,
+        "VMs": 11,
+        "ESXi": "VMware ESXi 8.0.3 build-00000000"
+      },
+      {
+        "Host": "esx-e3.lab.example",
+        "Cluster": "cluster-east",
+        "vCenter": "vc-lab01",
+        "Maintenance": "",
+        "CPU %": 16.4,
+        "Memory %": 46.5,
+        "Memory GiB": 768.0,
+        "Cores": 32,
+        "vCPUs": 72,
+        "vCPU/core": 2.25,
+        "VMs": 11,
+        "ESXi": "VMware ESXi 8.0.3 build-00000000"
+      }
+    ],
+    "datastores_warn": [
+      {
+        "Datastore": "DS-EAST-01",
+        "Cluster": "cluster-east",
+        "vCenter": "vc-lab01",
+        "VMs": 18,
+        "Capacity TiB": 8.0,
+        "Provisioned TiB": 6.9552,
+        "In use TiB": 6.624,
+        "Free TiB": 1.376,
+        "Free %": 17.2
+      }
+    ],
+    "guest_fs_crit": [
+      {
+        "VM": "app-db-01",
+        "Disk": "/var",
+        "Capacity GiB": 20.0,
+        "Consumed GiB": 18.62,
+        "Free GiB": 1.38,
+        "Free %": 6.9,
+        "vCenter": "vc-lab01"
+      },
+      {
+        "VM": "app-web-04",
+        "Disk": "/var",
+        "Capacity GiB": 12.0,
+        "Consumed GiB": 11.04,
+        "Free GiB": 0.96,
+        "Free %": 8.0,
+        "vCenter": "vc-lab01"
+      }
+    ]
+  }
+}
